@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container form-group">
+	<br/>
+	<div class="row">
+    	<div class= "col-lg-6"><h1>Add</h1></div>
+        <div class= "col-lg-6">
+                    <button onclick="window.location='{% url 'index' %}'"type="button" class="btn btn-success">Go Back</button>
+
+	    </div>
+    </div>
+
+    <form method="POST">
+	{% csrf_token %}
+	{{form.as_p}}
+	
+        <button class="btn btn-success" type='submit'>Submit</button>	
+    </form>
+</div>
+{% endblock %}

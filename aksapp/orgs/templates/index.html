@@ -3,7 +3,21 @@
 {% block content %}
 
 <div class="row">
-	{% include "_calendar_entry.html"}
+    <div class= "col-lg-4">
+      <h1>calendar</h1>
+      
+    </div>
+    <div class= "col-lg-8">
+      <button onclick="window.location='{% url 'add' %}'"type="button" class="btn btn-success">Add Entry</button>
+    </div>
+  </div>
+	<hr/>
+
+
+<div class="row">
+	{% for entry in entries %}
+	{% include "_calendar_entry.html" %}
+	{% endfor %}
 
 	
 </div>	
