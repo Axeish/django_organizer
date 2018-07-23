@@ -9,6 +9,14 @@
     </div>
     <div class= "col-lg-8">
       <button onclick="window.location='{% url 'add' %}'"type="button" class="btn btn-success">Add Entry</button>
+     <form method="GET" action=''    >
+      <input type="text" name="q" placeholder="search" value="{{ request.get.q }}">
+      <input type="submit" value= "search"/>
+    </form>
+
+</div>
+
+
     </div>
   </div>
 	<hr/>

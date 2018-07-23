@@ -6,5 +6,5 @@ from .models import Entry
 class EntryForm(forms.ModelForm):
 	class Meta:
 		model = Entry
-		fields = ['name','type', 'date', 'description']
+		fields = ['name','type', 'description']
    

@@ -15,6 +15,15 @@ def index(request):
 	entries = Entry.objects.all()
 	return render(request, "index.html", {'entries': entries})
 
+def today(request):
+    entries = Entry.objects.all()
+    query= request.GET.get('q')
+    if query:
+        entries = entries.filter(type__icontains=query) 
+        print(entries)
+        print(len(entries))
+    return render(request, "index.html", {'entries': entries})
+    
 
 def details(request,pk):
 	entry = Entry.objects.get(id=pk)

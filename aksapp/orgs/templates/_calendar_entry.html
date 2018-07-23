@@ -1,7 +1,8 @@
 <div class="calendar-entry col-lg-6">
 <br/s>
 <h1> {{entry.name}}</h1>
-<h3> {{entry.date | date:"M d, y" }} </h3>
+<p> {{entry.type}}</p>
+<h6> created: {{entry.date | date:"M d, y" }} || updated: {{entry.updated | date:"M d, y" }} </h6>
 
 <p>{{entry.description | truncatechars:150 }}</p>
 <button onclick="window.location='{% url 'details' pk=entry.id %}'" class="btn btn-primary"> View Details </button>

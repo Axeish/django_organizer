@@ -18,8 +18,8 @@ from django.urls import path
 from orgs import views
 
 urlpatterns = [
-
-    path('', views.index, name="index"),
+    path('', views.today, name="today"),
+    path('entry/', views.index, name="index"),
     path('entry/<int:pk>',views.details, name= "details"),
     path('entry/add',views.add,name='add'),
     path('entry/delete/<int:pk>',views.delete,name='delete'),
