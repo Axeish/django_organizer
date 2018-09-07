@@ -19,6 +19,10 @@ from orgs import views
 
 urlpatterns = [
     path('', views.today, name="today"),
+    path('toadd', views.addtodo, name="toadd"),
+    path('tocomplete/<todo_id>', views.completetodo, name="tocomplete"),
+    path('todelc', views.deletecomplete, name="todelc"),
+    path('todel1/<todo_id>', views.deleteone, name="todel1"),
     path('entry/', views.index, name="index"),
     path('entry/<int:pk>',views.details, name= "details"),
     path('entry/add',views.add,name='add'),

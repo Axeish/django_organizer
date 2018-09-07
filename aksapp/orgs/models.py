@@ -11,4 +11,26 @@ class Entry(models.Model):
 class States(Entry):	
 	record = models.IntegerField()
 
-# Create your models here.
+class Friends(models.Model):
+	name = models.CharField(max_length=200)	
+	record = models.IntegerField()
+
+class Task(models.Model):
+	name = models.CharField(max_length=200)
+	done = models.BooleanField(default=False)
+	date = models.DateTimeField(auto_now= False, auto_now_add=True)
+	
+	
+
+class SubTask(models.Model):
+	task = models.ForeignKey('Task',on_delete=models.PROTECT)
+	name = models.CharField(max_length=200)
+	done = models.BooleanField(default=False)
+	date = models.DateTimeField(auto_now= False, auto_now_add=True)
+
+
+class Fintask(models.Model):
+	name = models.CharField(max_length=200)
+	value =  models.FloatField()
+	date = models.DateTimeField(auto_now= False, auto_now_add=True)
+	

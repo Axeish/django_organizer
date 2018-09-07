@@ -3,32 +3,118 @@
 {% block content %}
 
 <div class="row">
-    <div class= "col-lg-4">
-      <h1>calendar</h1>
-      
-    </div>
-    <div class= "col-lg-8">
-      <button onclick="window.location='{% url 'add' %}'"type="button" class="btn btn-success">Add Entry</button>
-     <form method="GET" action=''    >
-      <input type="text" name="q" placeholder="search" value="{{ request.get.q }}">
-      <input type="submit" value= "search"/>
+  <div class= "col-lg-6">
+    <h1>{{date}} | {{ th }} {{day}} </h1>
+  </div>
+  
+  <div class= "col-lg-6">
+    <button onclick="window.location='{% url 'add' %}'"type="button" class="btn btn-success">Add Entry</button>
+    
+  </div>
+</div>
+<hr/>
+<div class="row">
+  <div class="col-lg-12">
+    <h5>Today, {{stre}}</h5>
+  </div>
+</div>
+
+<hr/>
+
+<div class="row">
+  <div class="col-lg-4">
+    <section>Today</section>
+  </div>
+  
+  <div class="col-lg-4">
+    <section>Pins</section>
+  </div>
+
+  <div class="col-lg-4">
+    <section>Actions</section>
+  </div>
+</div>
+
+
+<hr/>
+<hr/>
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXX TODO FORM XXXXXXXXXXXXXXXXXXXXXXXXXXX-->
+<div class="row">
+    
+   
+
+    <form action="{% url  'toadd' %}" method="post">
+        {% csrf_token %}
+        
+        {{todoform.name}}
+     
+
+        <div class="col-lg-2 form-group">
+            <button type="submit" class="btn btn-primary">
+                ADD
+            </button>
+                               
+        </div>
     </form>
+    
+    <a href="{% url 'todelc' %}"><button class="btn btn-warning"> DELETE COMPLETE </button></a>
+  
+   
+</div>
+
+<div class="row">
+        <ul class="tasklist">
+        {% for task in tasks %}
+      
+          <li class="list-item">
+              <section>
+                    {% if task.done %}
+                        <div class="complete">{{task.name}}</div>
+                    {% else %}
+                        <a href="{% url 'tocomplete' task.id %}"><div class="incomplete">{{task.name}}</div></a>
+                    {% endif %}
+               <a class="deletetask" href="{% url 'todel1' task.id %}"> x </a>     
+               <a class="deletetask" href="{% url 'todel1' task.id %}"> + </a>
+               </section>
+          </li>       
+      
+    {% endfor %}
+    </ul>         
+    
 
 </div>
 
 
-    </div>
-  </div>
-	<hr/>
 
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXX FIN XXXXXXXXXXXXXXXXXXXXXXXXXXX-->
+</hr>
+<div class="row">
+  <h5> Total Saving : 1000$ </h5>
+  <h5> August Goal : spent 1000$ </h5>
+  <h5> August Spent : 1000$ </h5>
+</div>
+
+
+
+
+
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXX FIN XXXXXXXXXXXXXXXXXXXXXXXXXXX-->
+<hr/>
 
 <div class="row">
+  <form class= "searchform" method="GET" action=''    >
+      <input class="search" type="text" name="q" placeholder="search" value="{{ request.get.q }}">
+      <input class="searchbtn" type="submit" value= "search"/>
+    </form>
+  </div>
+  <div class="row">
 	{% for entry in entries %}
 	{% include "_calendar_entry.html" %}
 	{% endfor %}
 
 	
 </div>	
+<hr/>
 <div class="pagination">
     <span class="step-links">
         {% if entries.has_previous %}
